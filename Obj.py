@@ -12,19 +12,13 @@ class Obj:
                 prefix, value = line.split(" ", 1)
             except:
                 continue
+
             if prefix == "v":
-                vert = list(map(float, value.split(" ")))
-                self.vertices.append(vert)
+                self.vertices.append(list(map(float, value.split())))
             elif prefix == "vt":
-                vts = list(map(float, value.split(" ")))
-                self.textcoord.append(vts)
+                self.textcoord.append(list(map(float, value.split())))
             elif prefix == "vn":
-                norm = list(map(float, value.split(" ")))
-                self.normals.append(norm)
+                self.normals.append(list(map(float, value.split())))
             elif prefix == "f":
-                face = []
-                verts = value.split(" ")
-                for vert in verts:
-                    vert = list(map(int, vert.split("/")))
-                    face.append(vert)
+                face = [list(map(int, vert.split('/'))) for vert in value.split()]
                 self.faces.append(face)
